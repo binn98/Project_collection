@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="gg">防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <div>防抖</div>
+    <script>
+        var gg = document.getElementById('gg')
+        var num = 1;
+        var throttle = function (func, delay) {
+            var prev = Date.now();
+            return function () {
+                var context = this;   //this指向window
+                var args = arguments;
+                var now = Date.now();
+
+                if (now - prev >= delay) {
+                    func.apply(context, args);
+                    // console.log( func.apply(context, args));
+                    // func()
+                    prev = Date.now();
+                }
+            }
+        }
+        function handle() {
+            // console.log(Math.random());
+            let div = document.createElement('div')
+            div.innerText = '年后' + num
+            document.body.appendChild(div)
+            num++
+            // console.log(this,arguments);
+
+        }
+        // window.addEventListener('scroll', throttle(handle, 1000));
+        // window.addEventListener('scroll', function(e){
+        //     console.log(e.timeStamp);
+
+        // });
+        var throttle = function (func, delay) {
+            var timer = null;
+            return function () {
+                var context = this;
+                var args = arguments;
+                if (!timer) {
+                    console.log(timer);
+
+                    timer = setTimeout(function () {
+                        func.apply(context, args);
+                        timer = null;
+                    }, delay);
+                    console.log(timer)
+                }
+            }
+        }
+        function handle() {
+            console.log(Math.random());
+        }
+        window.addEventListener('scroll', throttle(handle, 1000));
+        function t() {
+            alert('一秒后执行')
+            c = null
+
+        }
+        gg.addEventListener('click',vv)
+        function vv () {
+
+            var c = null
+            c = setTimeout(t, 1000)
+            console.log(c);
+        }
+
+    </script>
+</body>
+
+</html>

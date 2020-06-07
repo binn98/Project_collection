@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    var name = 'join'
+    function sayname(){
+        return [this.name,arguments]
+        // return this
+    }
+    function sayname2(){
+        return [this.name,arguments]
+        // console.log(arguments);
+        
+    }
+    // bind改变this指向
+    var obj = {
+        name:'jack',
+        sayname:sayname,
+        sayname2:sayname2.bind(window) //js原生bind可改变this的指向
+    }
+    console.log(obj.sayname2());
+    
+    //console.log(obj.sayname(),obj.sayname2());
+    
+
+    //call与apply
+    //相同点:都改变了this的指向
+    //不同点：call接受参数可以一个接着一个，apply只能接受一个严格的数组传参
+    //log结果相同
+    console.log(sayname.call(obj,1,2,3));
+   
+    console.log(sayname.apply(obj,[1,2,3]));
+   
+    console.log(this);
+    
+</script>
+</html>
